@@ -32,135 +32,146 @@ namespace EletroLight
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
-            cadastroMenuStrip = new ToolStripMenuItem();
-            clienteMenuItem = new ToolStripMenuItem();
-            fornecedorMenuItem = new ToolStripMenuItem();
-            produtoMenuItem = new ToolStripMenuItem();
-            movMenuStrip = new ToolStripMenuItem();
-            pedidoMenuItem = new ToolStripMenuItem();
-            segurançaMenuStrip = new ToolStripMenuItem();
-            usuáriosMenuItem = new ToolStripMenuItem();
-            novasCategoriasToolStripMenuItem = new ToolStripMenuItem();
-            sairMenuItem = new ToolStripMenuItem();
-            MenuHome = new MenuStrip();
-            MenuHome.SuspendLayout();
-            SuspendLayout();
+            this.cadastroMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.clienteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fornecedorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.produtoMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.movMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.pedidoMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.segurançaMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuáriosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CategoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sairMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuHome = new System.Windows.Forms.MenuStrip();
+            this.MenuHome.SuspendLayout();
+            this.SuspendLayout();
             // 
             // cadastroMenuStrip
             // 
-            cadastroMenuStrip.Checked = true;
-            cadastroMenuStrip.CheckState = CheckState.Indeterminate;
-            cadastroMenuStrip.DropDownItems.AddRange(new ToolStripItem[] { clienteMenuItem, fornecedorMenuItem, produtoMenuItem });
-            cadastroMenuStrip.ForeColor = Color.Black;
-            cadastroMenuStrip.ImageTransparentColor = SystemColors.ActiveCaptionText;
-            cadastroMenuStrip.Name = "cadastroMenuStrip";
-            cadastroMenuStrip.Size = new Size(80, 24);
-            cadastroMenuStrip.Text = "Cadastro";
+            this.cadastroMenuStrip.Checked = true;
+            this.cadastroMenuStrip.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.cadastroMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clienteMenuItem,
+            this.fornecedorMenuItem,
+            this.produtoMenuItem});
+            this.cadastroMenuStrip.ForeColor = System.Drawing.Color.Black;
+            this.cadastroMenuStrip.ImageTransparentColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cadastroMenuStrip.Name = "cadastroMenuStrip";
+            this.cadastroMenuStrip.Size = new System.Drawing.Size(80, 24);
+            this.cadastroMenuStrip.Text = "Cadastro";
             // 
             // clienteMenuItem
             // 
-            clienteMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            clienteMenuItem.ImageTransparentColor = SystemColors.ActiveCaptionText;
-            clienteMenuItem.Name = "clienteMenuItem";
-            clienteMenuItem.Size = new Size(180, 24);
-            clienteMenuItem.Text = "Cliente";
-            clienteMenuItem.Click += clienteToolStripMenuItem_Click;
+            this.clienteMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.clienteMenuItem.ImageTransparentColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.clienteMenuItem.Name = "clienteMenuItem";
+            this.clienteMenuItem.Size = new System.Drawing.Size(153, 24);
+            this.clienteMenuItem.Text = "Cliente";
+            this.clienteMenuItem.Click += new System.EventHandler(this.clienteMenuItem_Click);
             // 
             // fornecedorMenuItem
             // 
-            fornecedorMenuItem.Name = "fornecedorMenuItem";
-            fornecedorMenuItem.Size = new Size(180, 24);
-            fornecedorMenuItem.Text = "Fornecedor";
-            fornecedorMenuItem.Click += fornecedorToolStripMenuItem_Click;
+            this.fornecedorMenuItem.Name = "fornecedorMenuItem";
+            this.fornecedorMenuItem.Size = new System.Drawing.Size(153, 24);
+            this.fornecedorMenuItem.Text = "Fornecedor";
+            this.fornecedorMenuItem.Click += new System.EventHandler(this.fornecedorMenuItem_Click);
             // 
             // produtoMenuItem
             // 
-            produtoMenuItem.Name = "produtoMenuItem";
-            produtoMenuItem.Size = new Size(180, 24);
-            produtoMenuItem.Text = "Produto";
-            produtoMenuItem.Click += produtosToolStripMenuItem_Click;
+            this.produtoMenuItem.Name = "produtoMenuItem";
+            this.produtoMenuItem.Size = new System.Drawing.Size(153, 24);
+            this.produtoMenuItem.Text = "Produto";
+            this.produtoMenuItem.Click += new System.EventHandler(this.produtoMenuItem_Click);
             // 
             // movMenuStrip
             // 
-            movMenuStrip.DropDownItems.AddRange(new ToolStripItem[] { pedidoMenuItem });
-            movMenuStrip.ForeColor = Color.Black;
-            movMenuStrip.Name = "movMenuStrip";
-            movMenuStrip.Size = new Size(120, 24);
-            movMenuStrip.Text = "Movimentação";
+            this.movMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pedidoMenuItem});
+            this.movMenuStrip.ForeColor = System.Drawing.Color.Black;
+            this.movMenuStrip.Name = "movMenuStrip";
+            this.movMenuStrip.Size = new System.Drawing.Size(120, 24);
+            this.movMenuStrip.Text = "Movimentação";
             // 
             // pedidoMenuItem
             // 
-            pedidoMenuItem.BackgroundImageLayout = ImageLayout.None;
-            pedidoMenuItem.Name = "pedidoMenuItem";
-            pedidoMenuItem.Size = new Size(130, 24);
-            pedidoMenuItem.Text = "Pedidos";
-            pedidoMenuItem.Click += pedidoMenuItem_Click;
+            this.pedidoMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pedidoMenuItem.Name = "pedidoMenuItem";
+            this.pedidoMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.pedidoMenuItem.Text = "Pedidos";
+            this.pedidoMenuItem.Click += new System.EventHandler(this.pedidoMenuItem_Click_1);
             // 
             // segurançaMenuStrip
             // 
-            segurançaMenuStrip.DropDownItems.AddRange(new ToolStripItem[] { usuáriosMenuItem, novasCategoriasToolStripMenuItem });
-            segurançaMenuStrip.ForeColor = Color.Black;
-            segurançaMenuStrip.Name = "segurançaMenuStrip";
-            segurançaMenuStrip.Size = new Size(103, 24);
-            segurançaMenuStrip.Text = "Manutenção";
+            this.segurançaMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.usuáriosMenuItem,
+            this.CategoriasToolStripMenuItem});
+            this.segurançaMenuStrip.ForeColor = System.Drawing.Color.Black;
+            this.segurançaMenuStrip.Name = "segurançaMenuStrip";
+            this.segurançaMenuStrip.Size = new System.Drawing.Size(103, 24);
+            this.segurançaMenuStrip.Text = "Manutenção";
             // 
             // usuáriosMenuItem
             // 
-            usuáriosMenuItem.Name = "usuáriosMenuItem";
-            usuáriosMenuItem.Size = new Size(180, 24);
-            usuáriosMenuItem.Text = "Usuários";
-            usuáriosMenuItem.Click += usuáriosMenuItem_Click;
+            this.usuáriosMenuItem.Name = "usuáriosMenuItem";
+            this.usuáriosMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.usuáriosMenuItem.Text = "Usuários";
+            this.usuáriosMenuItem.Click += new System.EventHandler(this.usuáriosMenuItem_Click_1);
             // 
-            // novasCategoriasToolStripMenuItem
+            // CategoriasToolStripMenuItem
             // 
-            novasCategoriasToolStripMenuItem.Name = "novasCategoriasToolStripMenuItem";
-            novasCategoriasToolStripMenuItem.Size = new Size(180, 24);
-            novasCategoriasToolStripMenuItem.Text = " Categorias";
-            novasCategoriasToolStripMenuItem.Click += novasCategoriasToolStripMenuItem_Click;
+            this.CategoriasToolStripMenuItem.Name = "CategoriasToolStripMenuItem";
+            this.CategoriasToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.CategoriasToolStripMenuItem.Text = " Categorias";
+            this.CategoriasToolStripMenuItem.Click += new System.EventHandler(this.CategoriasToolStripMenuItem_Click);
             // 
             // sairMenuItem
             // 
-            sairMenuItem.ForeColor = Color.Black;
-            sairMenuItem.Name = "sairMenuItem";
-            sairMenuItem.Size = new Size(46, 24);
-            sairMenuItem.Text = "Sair";
-            sairMenuItem.Click += sairToolStripMenuItem_Click;
+            this.sairMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.sairMenuItem.Name = "sairMenuItem";
+            this.sairMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.sairMenuItem.Text = "Sair";
+            this.sairMenuItem.Click += new System.EventHandler(this.sairMenuItem_Click);
             // 
             // MenuHome
             // 
-            MenuHome.BackColor = Color.White;
-            MenuHome.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            MenuHome.ImeMode = ImeMode.On;
-            MenuHome.Items.AddRange(new ToolStripItem[] { cadastroMenuStrip, movMenuStrip, segurançaMenuStrip, sairMenuItem });
-            MenuHome.Location = new Point(0, 0);
-            MenuHome.Name = "MenuHome";
-            MenuHome.Size = new Size(800, 28);
-            MenuHome.TabIndex = 0;
-            MenuHome.Text = "menuStrip1";
-            MenuHome.ItemClicked += MenuHome_ItemClicked;
+            this.MenuHome.BackColor = System.Drawing.Color.White;
+            this.MenuHome.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.MenuHome.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.MenuHome.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cadastroMenuStrip,
+            this.movMenuStrip,
+            this.segurançaMenuStrip,
+            this.sairMenuItem});
+            this.MenuHome.Location = new System.Drawing.Point(0, 0);
+            this.MenuHome.Name = "MenuHome";
+            this.MenuHome.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.MenuHome.Size = new System.Drawing.Size(686, 28);
+            this.MenuHome.TabIndex = 0;
+            this.MenuHome.Text = "menuStrip1";
             // 
             // Home
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BackColor = Color.Gainsboro;
-            BackgroundImageLayout = ImageLayout.None;
-            CausesValidation = false;
-            ClientSize = new Size(800, 450);
-            Controls.Add(MenuHome);
-            ForeColor = Color.Transparent;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            ImeMode = ImeMode.Off;
-            MainMenuStrip = MenuHome;
-            Name = "Home";
-            Text = "EletroLight";
-            WindowState = FormWindowState.Maximized;
-            MenuHome.ResumeLayout(false);
-            MenuHome.PerformLayout();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.CausesValidation = false;
+            this.ClientSize = new System.Drawing.Size(686, 390);
+            this.Controls.Add(this.MenuHome);
+            this.ForeColor = System.Drawing.Color.Transparent;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.MainMenuStrip = this.MenuHome;
+            this.Name = "Home";
+            this.Text = "EletroLight";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.MenuHome.ResumeLayout(false);
+            this.MenuHome.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -174,6 +185,6 @@ namespace EletroLight
         private ToolStripMenuItem usuáriosMenuItem;
         private ToolStripMenuItem sairMenuItem;
         private MenuStrip MenuHome;
-        private ToolStripMenuItem novasCategoriasToolStripMenuItem;
+        private ToolStripMenuItem CategoriasToolStripMenuItem;
     }
 }

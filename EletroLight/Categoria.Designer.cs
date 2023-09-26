@@ -40,6 +40,9 @@ namespace EletroLight
             this.label1 = new System.Windows.Forms.Label();
             this.limparBT = new System.Windows.Forms.Button();
             this.idTB = new System.Windows.Forms.TextBox();
+            this.atualizarBT = new System.Windows.Forms.Button();
+            this.categoriaDGV = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriaDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // consultarBT
@@ -48,7 +51,7 @@ namespace EletroLight
             this.consultarBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.consultarBT.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.consultarBT.ForeColor = System.Drawing.Color.White;
-            this.consultarBT.Location = new System.Drawing.Point(35, 81);
+            this.consultarBT.Location = new System.Drawing.Point(35, 69);
             this.consultarBT.Name = "consultarBT";
             this.consultarBT.Size = new System.Drawing.Size(89, 40);
             this.consultarBT.TabIndex = 63;
@@ -62,7 +65,7 @@ namespace EletroLight
             this.incluirBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.incluirBT.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.incluirBT.ForeColor = System.Drawing.Color.White;
-            this.incluirBT.Location = new System.Drawing.Point(35, 218);
+            this.incluirBT.Location = new System.Drawing.Point(35, 304);
             this.incluirBT.Name = "incluirBT";
             this.incluirBT.Size = new System.Drawing.Size(89, 40);
             this.incluirBT.TabIndex = 62;
@@ -76,7 +79,7 @@ namespace EletroLight
             this.excluirBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.excluirBT.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.excluirBT.ForeColor = System.Drawing.Color.White;
-            this.excluirBT.Location = new System.Drawing.Point(196, 218);
+            this.excluirBT.Location = new System.Drawing.Point(260, 304);
             this.excluirBT.Name = "excluirBT";
             this.excluirBT.Size = new System.Drawing.Size(89, 40);
             this.excluirBT.TabIndex = 60;
@@ -87,17 +90,17 @@ namespace EletroLight
             // descricaoTB
             // 
             this.descricaoTB.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.descricaoTB.Location = new System.Drawing.Point(151, 40);
+            this.descricaoTB.Location = new System.Drawing.Point(151, 34);
             this.descricaoTB.MaxLength = 50;
             this.descricaoTB.Name = "descricaoTB";
-            this.descricaoTB.Size = new System.Drawing.Size(229, 29);
+            this.descricaoTB.Size = new System.Drawing.Size(293, 29);
             this.descricaoTB.TabIndex = 59;
             // 
             // nomeCliLabel
             // 
             this.nomeCliLabel.AutoSize = true;
             this.nomeCliLabel.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.nomeCliLabel.Location = new System.Drawing.Point(147, 16);
+            this.nomeCliLabel.Location = new System.Drawing.Point(147, 10);
             this.nomeCliLabel.Name = "nomeCliLabel";
             this.nomeCliLabel.Size = new System.Drawing.Size(80, 21);
             this.nomeCliLabel.TabIndex = 58;
@@ -107,7 +110,7 @@ namespace EletroLight
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label1.Location = new System.Drawing.Point(31, 16);
+            this.label1.Location = new System.Drawing.Point(31, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 21);
             this.label1.TabIndex = 65;
@@ -119,7 +122,7 @@ namespace EletroLight
             this.limparBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.limparBT.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.limparBT.ForeColor = System.Drawing.Color.White;
-            this.limparBT.Location = new System.Drawing.Point(291, 218);
+            this.limparBT.Location = new System.Drawing.Point(355, 304);
             this.limparBT.Name = "limparBT";
             this.limparBT.Size = new System.Drawing.Size(89, 40);
             this.limparBT.TabIndex = 66;
@@ -130,18 +133,50 @@ namespace EletroLight
             // idTB
             // 
             this.idTB.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.idTB.Location = new System.Drawing.Point(35, 40);
+            this.idTB.Location = new System.Drawing.Point(35, 34);
             this.idTB.MaxLength = 50;
             this.idTB.Name = "idTB";
             this.idTB.Size = new System.Drawing.Size(89, 29);
             this.idTB.TabIndex = 64;
+            // 
+            // atualizarBT
+            // 
+            this.atualizarBT.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.atualizarBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.atualizarBT.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.atualizarBT.ForeColor = System.Drawing.Color.White;
+            this.atualizarBT.Location = new System.Drawing.Point(165, 304);
+            this.atualizarBT.Name = "atualizarBT";
+            this.atualizarBT.Size = new System.Drawing.Size(89, 40);
+            this.atualizarBT.TabIndex = 67;
+            this.atualizarBT.Text = "Atualizar";
+            this.atualizarBT.UseVisualStyleBackColor = false;
+            this.atualizarBT.Click += new System.EventHandler(this.atualizarBT_Click);
+            // 
+            // categoriaDGV
+            // 
+            this.categoriaDGV.AllowUserToAddRows = false;
+            this.categoriaDGV.AllowUserToDeleteRows = false;
+            this.categoriaDGV.AllowUserToResizeColumns = false;
+            this.categoriaDGV.AllowUserToResizeRows = false;
+            this.categoriaDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.categoriaDGV.Location = new System.Drawing.Point(35, 132);
+            this.categoriaDGV.MultiSelect = false;
+            this.categoriaDGV.Name = "categoriaDGV";
+            this.categoriaDGV.ReadOnly = true;
+            this.categoriaDGV.RowHeadersVisible = false;
+            this.categoriaDGV.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.categoriaDGV.Size = new System.Drawing.Size(409, 141);
+            this.categoriaDGV.TabIndex = 68;
             // 
             // Categoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(435, 315);
+            this.ClientSize = new System.Drawing.Size(493, 366);
+            this.Controls.Add(this.categoriaDGV);
+            this.Controls.Add(this.atualizarBT);
             this.Controls.Add(this.limparBT);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.idTB);
@@ -157,7 +192,9 @@ namespace EletroLight
             this.Name = "Categoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Categorias";
+            this.Load += new System.EventHandler(this.Categoria_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Categoria_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.categoriaDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,5 +210,7 @@ namespace EletroLight
         private Label label1;
         private Button limparBT;
         private TextBox idTB;
+        private Button atualizarBT;
+        private DataGridView categoriaDGV;
     }
 }

@@ -20,6 +20,16 @@ namespace EletroLight
         }
 
 
+        // Fecha o Formulário com ESC //
+        private void Fornecedor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+
         // BOTÃO INCLUIR //
         private void incluirBT_Click(object sender, EventArgs e)
         {
@@ -186,7 +196,7 @@ namespace EletroLight
 
                             if (pedidoCount > 0)
                             {
-                                MessageBox.Show("O Fornecedor selecionado está vinculado a um produto e não pode ser excluído.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("O Fornecedor selecionado está vinculado a um produto e não pode ser excluído.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                         }
@@ -268,13 +278,5 @@ namespace EletroLight
         }
 
 
-        // Fecha o Formulário com ESC //
-        private void Fornecedor_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
-        }
     }
 }

@@ -20,14 +20,6 @@ namespace EletroLight
 
         }
 
-        private void RelatorioPedido_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'eLETROLIGHTDataSet.view_Pedido' table. You can move, or remove it, as needed.
-            this.view_PedidoTableAdapter.Fill(this.eLETROLIGHTDataSet.view_Pedido);
-            this.reportViewer1.RefreshReport();
-            reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
-        }
-
 
         // Fecha o Formulário com ESC //
         private void RelatorioPedido_KeyDown(object sender, KeyEventArgs e)
@@ -37,6 +29,17 @@ namespace EletroLight
                 this.Close();
             }
         }
+
+
+        private void RelatorioPedido_Load(object sender, EventArgs e)
+        {
+            this.view_PedidoTableAdapter.Fill(this.eLETROLIGHTDataSet.view_Pedido);
+            this.reportViewer1.RefreshReport();
+            reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
+        }
+
+
+
 
     }
 }

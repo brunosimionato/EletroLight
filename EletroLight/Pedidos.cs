@@ -16,6 +16,16 @@ namespace EletroLight
         }
 
 
+        // Fecha o Formulário com ESC //
+        private void Pedido_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+
         // CONFIGURAÇÃO DAS COMBOBOX //
         private void Pedido_Load(object sender, EventArgs e)
         {
@@ -105,8 +115,6 @@ namespace EletroLight
                         }
                     }
                 };
-
-
             }
         }
 
@@ -140,7 +148,7 @@ namespace EletroLight
         }        
 
 
-        // ATUALIZA A TEXTBOX DO CPF COM BASE NO CLIENTE SELECIONADO//
+        // ATUALIZA A TEXTBOX DO CPF COM BASE NO CLIENTE SELECIONADO //
         private void clienteCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (clienteCB.SelectedIndex != -1)
@@ -218,7 +226,6 @@ namespace EletroLight
         }
 
 
-
         // Toda a vez que um número é inserido dentro da quantidadeTB o calculo de multiplicação é feito //
         private void quantidadeTB_KeyUp(object sender, KeyEventArgs e)
         {
@@ -293,7 +300,6 @@ namespace EletroLight
                 MessageBox.Show("Erro ao inserir Produto: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
 
         // BOTÃO CONSULTAR //
@@ -520,21 +526,12 @@ namespace EletroLight
             }
         }
 
+
         // BOTÃO RELATÓRIO //
         private void relatorioBT_Click(object sender, EventArgs e)
         {
             RelatorioPedido frm = new RelatorioPedido();
             frm.Show();
-        }
-
-
-        // Fecha o Formulário com ESC //
-        private void Pedido_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
         }
     }
 }

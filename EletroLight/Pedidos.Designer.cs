@@ -371,7 +371,7 @@ namespace EletroLight
             this.MinimizeBox = false;
             this.Name = "Pedido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pedido";
+            this.Text = "Pedidos";
             this.Load += new System.EventHandler(this.Pedido_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Pedido_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGV)).EndInit();
@@ -384,7 +384,6 @@ namespace EletroLight
 
         #endregion
 
-        private MaskedTextBox cepMaskedTextBox1;
         private Label dataLabel;
         private Button consultarBT;
         private Button incluirBT;

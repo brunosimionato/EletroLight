@@ -20,6 +20,78 @@ namespace EletroLight
         }
 
 
+        // Fecha o Formulário com ESC //
+        private void Categoria_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+
+        private void Categoria_Load(object sender, EventArgs e)
+        {
+            // CONFIGURAÇÃO DA DATA GRID VIEW //
+            {
+                SqlConnection conexao = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True");
+                conexao.Open();
+
+                string queryAtualizacao = "SELECT * FROM Categoria";
+                SqlCommand comandoAtualizacao = new SqlCommand(queryAtualizacao, conexao);
+                SqlDataAdapter adaptadorAtualizacao = new SqlDataAdapter(comandoAtualizacao);
+                DataSet dataSetAtualizado = new DataSet();
+                adaptadorAtualizacao.Fill(dataSetAtualizado);
+
+                categoriaDGV.DataSource = dataSetAtualizado.Tables[0];
+                conexao.Close();
+
+                categoriaDGV.Columns[0].HeaderText = "ID";
+                categoriaDGV.Columns[1].HeaderText = "Categoria";
+
+                foreach (DataGridViewColumn coluna in categoriaDGV.Columns)
+                {
+                    coluna.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    coluna.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                }
+
+                foreach (DataGridViewColumn coluna in categoriaDGV.Columns)
+                {
+                    coluna.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
+
+                categoriaDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                categoriaDGV.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+                foreach (DataGridViewColumn coluna in categoriaDGV.Columns)
+                {
+                    coluna.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    coluna.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+                    coluna.HeaderCell.Style.Font = new Font(categoriaDGV.Font, FontStyle.Bold);
+                    coluna.HeaderCell.Style.Padding = new Padding(3, 3, 3, 3);
+                }
+            }
+        }
+
+
+        // FUNÇÃO PARA ATUALIZAR A DATA GRID VIEW APÓS INSERIR UM CLIENTE NOVO //
+        private void AtualizarDataGridView()
+        {
+            using (SqlConnection conexao = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True"))
+            {
+                conexao.Open();
+
+                string queryAtualizacao = "SELECT * FROM Categoria";
+                SqlCommand comandoAtualizacao = new SqlCommand(queryAtualizacao, conexao);
+                SqlDataAdapter adaptadorAtualizacao = new SqlDataAdapter(comandoAtualizacao);
+                DataSet dataSetAtualizado = new DataSet();
+                adaptadorAtualizacao.Fill(dataSetAtualizado);
+
+                categoriaDGV.DataSource = dataSetAtualizado.Tables[0];
+            }
+        }
+
+
         // BOTÃO INCLUIR // 
         private void incluirBT_Click(object sender, EventArgs e)
         {
@@ -64,6 +136,8 @@ namespace EletroLight
 
                         idTB.Text = "";
                         descricaoTB.Text = "";
+
+                        AtualizarDataGridView();
                     }
                 }
             }
@@ -83,6 +157,13 @@ namespace EletroLight
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
+
+                    if (string.IsNullOrEmpty(idTB.Text))
+                    {
+                        MessageBox.Show("Insira o ID da categoria.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     using (SqlCommand cmd = new SqlCommand("ConsultarCategoria", connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
@@ -159,6 +240,8 @@ namespace EletroLight
 
                             idTB.Text = "";
                             descricaoTB.Text = "";
+
+                            AtualizarDataGridView();
                         }
                     }
                 }
@@ -178,13 +261,52 @@ namespace EletroLight
         }
 
 
-        // Fecha o Formulário com ESC //
-        private void Categoria_KeyDown(object sender, KeyEventArgs e)
+        // BOTÃO ATUALIZAR //
+        private void atualizarBT_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            try
             {
-                this.Close();
+                if (string.IsNullOrWhiteSpace(descricaoTB.Text) ||
+                    string.IsNullOrWhiteSpace(idTB.Text))
+                {
+                    MessageBox.Show("Por favor, preencha todos os campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DialogResult resultado = MessageBox.Show("Tem certeza que deseja atualizar os dados da Categoria?", "Confirmação de Atualização", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    string connectionString = @"Data Source=LAPTOP-BRUNO\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True";
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+
+                        using (SqlCommand cmd = new SqlCommand("AtualizarCategoria", connection))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            int categoriaID = int.Parse(idTB.Text);
+                            cmd.Parameters.AddWithValue("@id_categoria", categoriaID);
+                            cmd.Parameters.AddWithValue("@categoria", descricaoTB.Text);
+
+
+                            cmd.ExecuteNonQuery();
+
+                            MessageBox.Show("Categoria atualizada com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            AtualizarDataGridView();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao atualizar Categoria: " + ex.Message);
             }
         }
+
+        
     }
+    
 }

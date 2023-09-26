@@ -109,7 +109,7 @@ namespace EletroLight
             this.excluirBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.excluirBT.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.excluirBT.ForeColor = System.Drawing.Color.White;
-            this.excluirBT.Location = new System.Drawing.Point(329, 310);
+            this.excluirBT.Location = new System.Drawing.Point(330, 310);
             this.excluirBT.Name = "excluirBT";
             this.excluirBT.Size = new System.Drawing.Size(95, 46);
             this.excluirBT.TabIndex = 37;
@@ -182,7 +182,7 @@ namespace EletroLight
             this.atualizarBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.atualizarBT.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.atualizarBT.ForeColor = System.Drawing.Color.White;
-            this.atualizarBT.Location = new System.Drawing.Point(228, 310);
+            this.atualizarBT.Location = new System.Drawing.Point(229, 310);
             this.atualizarBT.Name = "atualizarBT";
             this.atualizarBT.Size = new System.Drawing.Size(95, 46);
             this.atualizarBT.TabIndex = 46;
