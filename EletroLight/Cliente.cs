@@ -141,7 +141,7 @@ namespace EletroLight
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao consultar cliente: " + ex.Message);
+                MessageBox.Show("Erro ao consultar Cliente: " + ex.Message);
             }
         }
 
@@ -196,7 +196,7 @@ namespace EletroLight
 
                             if (pedidoCount > 0)
                             {
-                                MessageBox.Show("O cliente selecionado está vinculado a um pedido e não pode ser excluído.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("O cliente selecionado está vinculado a um pedido e não pode ser excluído.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                         }
@@ -226,7 +226,7 @@ namespace EletroLight
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao excluir cliente: " + ex.Message);
+                MessageBox.Show("Erro ao excluir Cliente: " + ex.Message);
             }
         }
 
@@ -234,9 +234,6 @@ namespace EletroLight
         // BOTÃO ATUALIZAR //
         private void atualizarBT_Click(object sender, EventArgs e)
         {
-            string cpfOriginal = cpfMTB.Text;
-            string rgOriginal = rgTB.Text;
-
             try
             {
                 if (string.IsNullOrWhiteSpace(nomeTB.Text) ||

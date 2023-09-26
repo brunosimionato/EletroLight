@@ -23,6 +23,17 @@ namespace EletroLight
             this.KeyPreview = true;
         }
 
+
+        // Fecha o Formulário com ESC //
+        private void Produto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+
         // CONFIGURAÇÃO DAS COMBOBOX //
         private void Produto_Load_1(object sender, EventArgs e)
         {
@@ -225,7 +236,7 @@ namespace EletroLight
 
                             if (pedidoCount > 0)
                             {
-                                MessageBox.Show("O produto selecionado está vinculado a um pedido e não pode ser excluído.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("O produto selecionado está vinculado a um pedido e não pode ser excluído.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                         }
@@ -368,13 +379,6 @@ namespace EletroLight
         }
 
 
-        // Fecha o Formulário com ESC //
-        private void Produto_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
-        }
+
     }
 }

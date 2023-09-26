@@ -17,56 +17,54 @@ namespace EletroLight
             InitializeComponent();
         }
 
-        private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private Form formularioAberto = null;
+
+        private void clienteMenuItem_Click(object sender, EventArgs e)
         {
-            Cliente frm = new Cliente();
-            frm.Show();
+            AbrirForm(new Cliente());
         }
 
-        private void fornecedorToolStripMenuItem_Click(object sender, EventArgs e)
+        private void fornecedorMenuItem_Click(object sender, EventArgs e)
         {
-            Fornecedor frm = new Fornecedor();
-            frm.Show();
+            AbrirForm(new Fornecedor());
         }
 
-        private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void produtoMenuItem_Click(object sender, EventArgs e)
         {
-            Produto frm = new Produto();
-            frm.Show();
+            AbrirForm(new Produto());
         }
 
-        private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void pedidoMenuItem_Click_1(object sender, EventArgs e)
         {
-            Categoria frm = new Categoria();
-            frm.Show();
+            AbrirForm(new Pedido());
         }
 
-        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        private void usuáriosMenuItem_Click_1(object sender, EventArgs e)
+        {
+            AbrirForm(new Usuarios());
+        }
+
+        private void CategoriasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirForm(new Categoria());
+        }
+
+        private void AbrirForm(Form novoFormulario)
+        {
+            if (formularioAberto != null && !formularioAberto.IsDisposed)
+            {
+                formularioAberto.Close();
+            }
+
+            novoFormulario.Owner = this;
+            novoFormulario.Show();
+            formularioAberto = novoFormulario;
+        }
+
+        private void sairMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void pedidoMenuItem_Click(object sender, EventArgs e)
-        {
-            Pedido frm = new Pedido();
-            frm.Show();
-        }
-
-        private void usuáriosMenuItem_Click(object sender, EventArgs e)
-        {
-            Usuarios frm = new Usuarios();
-            frm.Show();
-        }
-
-        private void MenuHome_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void novasCategoriasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Categoria frm = new Categoria();
-            frm.Show();
         }
     }
 }
