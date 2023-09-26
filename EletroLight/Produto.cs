@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Globalization;
 
+
 namespace EletroLight
 {
     public partial class Produto : Form
@@ -19,6 +20,7 @@ namespace EletroLight
         public Produto()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         // CONFIGURAÇÃO DAS COMBOBOX //
@@ -366,5 +368,13 @@ namespace EletroLight
         }
 
 
+        // Fecha o Formulário com ESC //
+        private void Produto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace EletroLight
         public Categoria()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
 
@@ -174,6 +175,16 @@ namespace EletroLight
         {
             idTB.Text = string.Empty;
             descricaoTB.Text = string.Empty;
+        }
+
+
+        // Fecha o Formulário com ESC //
+        private void Categoria_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

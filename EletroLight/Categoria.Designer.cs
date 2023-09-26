@@ -156,8 +156,8 @@ namespace EletroLight
             this.MinimizeBox = false;
             this.Name = "Categoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Categoria";
-            this.TopMost = true;
+            this.Text = "Categorias";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Categoria_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
