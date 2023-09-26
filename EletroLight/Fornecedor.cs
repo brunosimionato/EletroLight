@@ -16,6 +16,7 @@ namespace EletroLight
         public Fornecedor()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
 
@@ -267,5 +268,13 @@ namespace EletroLight
         }
 
 
+        // Fecha o Formulário com ESC //
+        private void Fornecedor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

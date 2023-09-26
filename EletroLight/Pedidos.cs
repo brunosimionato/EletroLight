@@ -12,6 +12,7 @@ namespace EletroLight
         public Pedido()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
 
@@ -64,7 +65,7 @@ namespace EletroLight
                 dataGV.Columns[3].HeaderText = "Produto";
                 dataGV.Columns[4].HeaderText = "Qtd.";
                 dataGV.Columns[5].HeaderText = "Data";
-                dataGV.Columns[6].HeaderText = "Valor";
+                dataGV.Columns[6].HeaderText = "Valor Unitário";
                 dataGV.Columns[7].HeaderText = "Valor Total";
 
                 foreach (DataGridViewColumn coluna in dataGV.Columns)
@@ -181,7 +182,7 @@ namespace EletroLight
                     if (result != DBNull.Value)
                     {
                         decimal valorUnitario = (decimal)result;
-                        valor_unitarioTB.Text = string.Format("{0:C}", valorUnitario);
+                        valor_unitarioTB.Text = valorUnitario.ToString("0.00"); // Exibe o valor com duas casas decimais
                     }
                     else
                     {
@@ -189,7 +190,7 @@ namespace EletroLight
                     }
                 }
 
-                CalcularEAtualizarValorTotal(); 
+                CalcularEAtualizarValorTotal();
             }
             else
             {
@@ -204,17 +205,19 @@ namespace EletroLight
         {
             if (!string.IsNullOrEmpty(valor_unitarioTB.Text) && int.TryParse(quantidadeTB.Text, out int quantidade))
             {
-                decimal valorUnitario = decimal.Parse(valor_unitarioTB.Text, NumberStyles.Currency);
+                decimal valorUnitario = decimal.Parse(valor_unitarioTB.Text, new CultureInfo("pt-BR"));
 
                 decimal valorTotal = quantidade * valorUnitario;
 
-                valor_totalTB.Text = string.Format("{0:C}", valorTotal);
+                valor_totalTB.Text = valorTotal.ToString("#,##0.00"); // Exibe o valor total com duas casas decimais
             }
             else
             {
                 valor_totalTB.Text = "";
             }
         }
+
+
 
         // Toda a vez que um número é inserido dentro da quantidadeTB o calculo de multiplicação é feito //
         private void quantidadeTB_KeyUp(object sender, KeyEventArgs e)
@@ -239,7 +242,14 @@ namespace EletroLight
                     return;
                 }
 
-                DateTime data = DateTime.ParseExact(dataMTB.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                // Verificar se a data é válida antes de tentar a conversão
+                DateTime data;
+                if (!DateTime.TryParseExact(dataMTB.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out data))
+                {
+                    MessageBox.Show("Por favor, preencha todos os campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 decimal valorUnitario = string.IsNullOrEmpty(valor_unitarioTB.Text) ? 0 : decimal.Parse(valor_unitarioTB.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
                 decimal valorTotal = string.IsNullOrEmpty(valor_totalTB.Text) ? 0 : decimal.Parse(valor_totalTB.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
 
@@ -275,7 +285,6 @@ namespace EletroLight
                 valor_unitarioTB.Text = "";
                 valor_totalTB.Text = "";
 
-
                 // Atualizar a DataGridView após a inserção //
                 AtualizarDataGridView();
             }
@@ -284,6 +293,7 @@ namespace EletroLight
                 MessageBox.Show("Erro ao inserir Produto: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         // BOTÃO CONSULTAR //
@@ -510,6 +520,21 @@ namespace EletroLight
             }
         }
 
+        // BOTÃO RELATÓRIO //
+        private void relatorioBT_Click(object sender, EventArgs e)
+        {
+            RelatorioPedido frm = new RelatorioPedido();
+            frm.Show();
+        }
 
+
+        // Fecha o Formulário com ESC //
+        private void Pedido_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

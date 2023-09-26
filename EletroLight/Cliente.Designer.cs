@@ -361,7 +361,7 @@ namespace EletroLight
             this.Name = "Cliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cliente";
-            this.TopMost = true;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cliente_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

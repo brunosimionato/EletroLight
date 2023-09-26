@@ -120,10 +120,10 @@ namespace EletroLight
             // quantidadeTB
             // 
             this.quantidadeTB.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.quantidadeTB.Location = new System.Drawing.Point(171, 175);
+            this.quantidadeTB.Location = new System.Drawing.Point(173, 175);
             this.quantidadeTB.MaxLength = 2;
             this.quantidadeTB.Name = "quantidadeTB";
-            this.quantidadeTB.Size = new System.Drawing.Size(96, 29);
+            this.quantidadeTB.Size = new System.Drawing.Size(109, 29);
             this.quantidadeTB.TabIndex = 32;
             this.quantidadeTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.quantidadeTB_KeyPress_1);
             // 
@@ -160,7 +160,7 @@ namespace EletroLight
             // 
             this.enderecoLabel.AutoSize = true;
             this.enderecoLabel.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.enderecoLabel.Location = new System.Drawing.Point(167, 151);
+            this.enderecoLabel.Location = new System.Drawing.Point(169, 151);
             this.enderecoLabel.Name = "enderecoLabel";
             this.enderecoLabel.Size = new System.Drawing.Size(94, 21);
             this.enderecoLabel.TabIndex = 27;
@@ -272,8 +272,8 @@ namespace EletroLight
             this.Name = "Produto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Produto";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.Produto_Load_1);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Produto_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

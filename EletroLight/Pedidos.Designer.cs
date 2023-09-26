@@ -56,6 +56,7 @@ namespace EletroLight
             this.valor_unitarioTB = new System.Windows.Forms.TextBox();
             this.valor_totalTB = new System.Windows.Forms.TextBox();
             this.dataGV = new System.Windows.Forms.DataGridView();
+            this.relatorioBT = new System.Windows.Forms.Button();
             this.categoriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.categoriaBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGV)).BeginInit();
@@ -145,9 +146,9 @@ namespace EletroLight
             this.valorUniLabel.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.valorUniLabel.Location = new System.Drawing.Point(47, 205);
             this.valorUniLabel.Name = "valorUniLabel";
-            this.valorUniLabel.Size = new System.Drawing.Size(107, 21);
+            this.valorUniLabel.Size = new System.Drawing.Size(130, 21);
             this.valorUniLabel.TabIndex = 47;
-            this.valorUniLabel.Text = "Valor unitário:\r\n";
+            this.valorUniLabel.Text = "Valor unitário R$:\r\n";
             // 
             // nomeLabel
             // 
@@ -183,11 +184,11 @@ namespace EletroLight
             // 
             this.valorTotalLabel1.AutoSize = true;
             this.valorTotalLabel1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.valorTotalLabel1.Location = new System.Drawing.Point(191, 205);
+            this.valorTotalLabel1.Location = new System.Drawing.Point(216, 205);
             this.valorTotalLabel1.Name = "valorTotalLabel1";
-            this.valorTotalLabel1.Size = new System.Drawing.Size(84, 21);
+            this.valorTotalLabel1.Size = new System.Drawing.Size(107, 21);
             this.valorTotalLabel1.TabIndex = 66;
-            this.valorTotalLabel1.Text = "Valor total:\r\n";
+            this.valorTotalLabel1.Text = "Valor total R$:\r\n";
             // 
             // atualizarBT
             // 
@@ -282,18 +283,18 @@ namespace EletroLight
             this.valor_unitarioTB.MaxLength = 2;
             this.valor_unitarioTB.Name = "valor_unitarioTB";
             this.valor_unitarioTB.ReadOnly = true;
-            this.valor_unitarioTB.Size = new System.Drawing.Size(122, 29);
+            this.valor_unitarioTB.Size = new System.Drawing.Size(154, 29);
             this.valor_unitarioTB.TabIndex = 79;
             // 
             // valor_totalTB
             // 
             this.valor_totalTB.Enabled = false;
             this.valor_totalTB.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.valor_totalTB.Location = new System.Drawing.Point(195, 229);
+            this.valor_totalTB.Location = new System.Drawing.Point(220, 229);
             this.valor_totalTB.MaxLength = 2;
             this.valor_totalTB.Name = "valor_totalTB";
             this.valor_totalTB.ReadOnly = true;
-            this.valor_totalTB.Size = new System.Drawing.Size(123, 29);
+            this.valor_totalTB.Size = new System.Drawing.Size(154, 29);
             this.valor_totalTB.TabIndex = 80;
             // 
             // dataGV
@@ -313,6 +314,20 @@ namespace EletroLight
             this.dataGV.Size = new System.Drawing.Size(550, 162);
             this.dataGV.TabIndex = 81;
             // 
+            // relatorioBT
+            // 
+            this.relatorioBT.BackColor = System.Drawing.Color.DimGray;
+            this.relatorioBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.relatorioBT.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.relatorioBT.ForeColor = System.Drawing.Color.White;
+            this.relatorioBT.Location = new System.Drawing.Point(152, 82);
+            this.relatorioBT.Name = "relatorioBT";
+            this.relatorioBT.Size = new System.Drawing.Size(95, 46);
+            this.relatorioBT.TabIndex = 82;
+            this.relatorioBT.Text = "Relatório";
+            this.relatorioBT.UseVisualStyleBackColor = false;
+            this.relatorioBT.Click += new System.EventHandler(this.relatorioBT_Click);
+            // 
             // categoriaBindingSource
             // 
             this.categoriaBindingSource.DataSource = typeof(EletroLight.Categoria);
@@ -327,6 +342,7 @@ namespace EletroLight
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(650, 547);
+            this.Controls.Add(this.relatorioBT);
             this.Controls.Add(this.dataGV);
             this.Controls.Add(this.valor_totalTB);
             this.Controls.Add(this.valor_unitarioTB);
@@ -356,8 +372,8 @@ namespace EletroLight
             this.Name = "Pedido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pedido";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.Pedido_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Pedido_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource1)).EndInit();
@@ -396,5 +412,6 @@ namespace EletroLight
         private BindingSource categoriaBindingSource;
         private BindingSource categoriaBindingSource1;
         private DataGridView dataGV;
+        private Button relatorioBT;
     }
 }

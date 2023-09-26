@@ -339,7 +339,7 @@ namespace EletroLight
             this.Name = "Fornecedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Fornecedor";
-            this.TopMost = true;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Fornecedor_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
