@@ -73,6 +73,9 @@ namespace EletroLight
             Application.Exit();
         }
 
-
+        private void Home_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

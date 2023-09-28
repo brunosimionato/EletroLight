@@ -78,6 +78,7 @@ namespace EletroLight
                 dataGV.Columns[6].HeaderText = "Valor Unitário";
                 dataGV.Columns[7].HeaderText = "Valor Total";
 
+
                 foreach (DataGridViewColumn coluna in dataGV.Columns)
                 {
                     coluna.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -241,11 +242,18 @@ namespace EletroLight
                 string cliente = clienteCB.SelectedValue?.ToString() ?? "";
                 string cpf = cpfMTB.Text ?? "";
                 string produto = produtoCB.SelectedValue?.ToString() ?? "";
-                int quantidade = string.IsNullOrEmpty(quantidadeTB.Text) ? 0 : Convert.ToInt32(quantidadeTB.Text);
 
-                if (string.IsNullOrEmpty(cliente) || string.IsNullOrEmpty(cpf) || string.IsNullOrEmpty(produto) || quantidade <= 0)
+                if (string.IsNullOrEmpty(cliente) || string.IsNullOrEmpty(cpf) || string.IsNullOrEmpty(produto) || string.IsNullOrEmpty(quantidadeTB.Text))
                 {
                     MessageBox.Show("Por favor, preencha todos os campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int quantidade; 
+                if (!int.TryParse(quantidadeTB.Text, out quantidade) || quantidade == 0)
+                {
+                    MessageBox.Show("A quantidade deve ser um número inteiro maior que zero.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    quantidadeTB.Text = string.Empty;
                     return;
                 }
 
@@ -473,6 +481,14 @@ namespace EletroLight
                     string.IsNullOrWhiteSpace(valor_totalTB.Text))
                 {
                     MessageBox.Show("Por favor, preencha todos os campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int qtd;
+                if (!int.TryParse(quantidadeTB.Text, out qtd) || qtd == 0)
+                {
+                    MessageBox.Show("A quantidade deve ser um número inteiro maior que zero.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    quantidadeTB.Text = string.Empty;
                     return;
                 }
 

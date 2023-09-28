@@ -130,7 +130,7 @@ namespace EletroLight
             // 
             this.pedidosExcluidoToolStripMenuItem.Name = "pedidosExcluidoToolStripMenuItem";
             this.pedidosExcluidoToolStripMenuItem.Size = new System.Drawing.Size(196, 24);
-            this.pedidosExcluidoToolStripMenuItem.Text = "Pedidos Excluidos";
+            this.pedidosExcluidoToolStripMenuItem.Text = "Pedidos Excluídos";
             this.pedidosExcluidoToolStripMenuItem.Click += new System.EventHandler(this.pedidosExcluidoToolStripMenuItem_Click);
             // 
             // sairMenuItem
@@ -176,6 +176,7 @@ namespace EletroLight
             this.Name = "Home";
             this.Text = "EletroLight";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Home_FormClosing);
             this.MenuHome.ResumeLayout(false);
             this.MenuHome.PerformLayout();
             this.ResumeLayout(false);
