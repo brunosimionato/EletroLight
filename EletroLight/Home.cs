@@ -50,6 +50,12 @@ namespace EletroLight
             AbrirForm(new Categoria());
         }
 
+        private void pedidosExcluidoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirForm(new PedidoExcluido());
+        }
+
+
         private void AbrirForm(Form novoFormulario)
         {
             if (formularioAberto != null && !formularioAberto.IsDisposed)
@@ -66,5 +72,7 @@ namespace EletroLight
         {
             Application.Exit();
         }
+
+
     }
 }

@@ -41,6 +41,7 @@ namespace EletroLight
             this.segurançaMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.usuáriosMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CategoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pedidosExcluidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuHome = new System.Windows.Forms.MenuStrip();
             this.MenuHome.SuspendLayout();
@@ -96,7 +97,7 @@ namespace EletroLight
             // 
             this.pedidoMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pedidoMenuItem.Name = "pedidoMenuItem";
-            this.pedidoMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.pedidoMenuItem.Size = new System.Drawing.Size(130, 24);
             this.pedidoMenuItem.Text = "Pedidos";
             this.pedidoMenuItem.Click += new System.EventHandler(this.pedidoMenuItem_Click_1);
             // 
@@ -104,7 +105,8 @@ namespace EletroLight
             // 
             this.segurançaMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.usuáriosMenuItem,
-            this.CategoriasToolStripMenuItem});
+            this.CategoriasToolStripMenuItem,
+            this.pedidosExcluidoToolStripMenuItem});
             this.segurançaMenuStrip.ForeColor = System.Drawing.Color.Black;
             this.segurançaMenuStrip.Name = "segurançaMenuStrip";
             this.segurançaMenuStrip.Size = new System.Drawing.Size(103, 24);
@@ -113,16 +115,23 @@ namespace EletroLight
             // usuáriosMenuItem
             // 
             this.usuáriosMenuItem.Name = "usuáriosMenuItem";
-            this.usuáriosMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.usuáriosMenuItem.Size = new System.Drawing.Size(196, 24);
             this.usuáriosMenuItem.Text = "Usuários";
             this.usuáriosMenuItem.Click += new System.EventHandler(this.usuáriosMenuItem_Click_1);
             // 
             // CategoriasToolStripMenuItem
             // 
             this.CategoriasToolStripMenuItem.Name = "CategoriasToolStripMenuItem";
-            this.CategoriasToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.CategoriasToolStripMenuItem.Text = " Categorias";
+            this.CategoriasToolStripMenuItem.Size = new System.Drawing.Size(196, 24);
+            this.CategoriasToolStripMenuItem.Text = "Categorias";
             this.CategoriasToolStripMenuItem.Click += new System.EventHandler(this.CategoriasToolStripMenuItem_Click);
+            // 
+            // pedidosExcluidoToolStripMenuItem
+            // 
+            this.pedidosExcluidoToolStripMenuItem.Name = "pedidosExcluidoToolStripMenuItem";
+            this.pedidosExcluidoToolStripMenuItem.Size = new System.Drawing.Size(196, 24);
+            this.pedidosExcluidoToolStripMenuItem.Text = "Pedidos Excluidos";
+            this.pedidosExcluidoToolStripMenuItem.Click += new System.EventHandler(this.pedidosExcluidoToolStripMenuItem_Click);
             // 
             // sairMenuItem
             // 
@@ -186,5 +195,6 @@ namespace EletroLight
         private ToolStripMenuItem sairMenuItem;
         private MenuStrip MenuHome;
         private ToolStripMenuItem CategoriasToolStripMenuItem;
+        private ToolStripMenuItem pedidosExcluidoToolStripMenuItem;
     }
 }

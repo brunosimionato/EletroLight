@@ -75,9 +75,10 @@ namespace EletroLight
                     return;
                 }
 
-                if (!int.TryParse(quantidadeTB.Text, out int quantidade))
+                if (!int.TryParse(quantidadeTB.Text, out int quantidade) || quantidade <= 0)
                 {
-                    MessageBox.Show("A quantidade deve ser um número inteiro.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("A quantidade deve ser um número inteiro maior que zero.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    quantidadeTB.Text = string.Empty;
                     return;
                 }
 
@@ -220,6 +221,8 @@ namespace EletroLight
                     MessageBox.Show("Por favor, preencha todos os campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
+
                 DialogResult resultado = MessageBox.Show("Tem certeza que deseja excluir o Produto?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (resultado == DialogResult.Yes)
@@ -282,6 +285,14 @@ namespace EletroLight
                     return;
                 }
 
+                int quantidade;
+                if (!int.TryParse(quantidadeTB.Text, out quantidade) || quantidade <= 0)
+                {
+                    MessageBox.Show("A quantidade deve ser um número inteiro maior que zero.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    quantidadeTB.Text = string.Empty;
+                    return;
+                }
+
                 DialogResult resultado = MessageBox.Show("Tem certeza que deseja atualizar os dados do Produto?", "Confirmação de Atualização", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (resultado == DialogResult.Yes)
@@ -293,7 +304,6 @@ namespace EletroLight
                     valor = valor.Replace(",", ".");
                     decimal valorDecimal = decimal.Parse(valor, CultureInfo.InvariantCulture);
 
-                    int quantidade = Convert.ToInt32(quantidadeTB.Text);
                     string fornecedor = fornecedorCB.Text;
 
                     string connectionString = @"Data Source=LAPTOP-BRUNO\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True";
@@ -345,6 +355,7 @@ namespace EletroLight
                 MessageBox.Show("Erro ao atualizar Produto: " + ex.Message);
             }
         }
+
 
         // Formata automaticamente o valor monetário da valorTB //
         private void valorTB_TextChanged_1(object sender, EventArgs e)
