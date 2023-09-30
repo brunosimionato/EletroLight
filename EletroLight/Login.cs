@@ -19,7 +19,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO ENTRAR //
+        // BOTÃO ENTRAR
         private void entrarBT_Click(object sender, EventArgs e)
         {
             try
@@ -40,7 +40,7 @@ namespace EletroLight
 
                     if (resultado > 0)
                     {
-                        // Abrir o formulário principal (Home)
+                        // ABRE O FORMULÁRIO PRINCIPAL (HOME)
                         Home home = new Home();
                         home.Show();
                         this.Hide();

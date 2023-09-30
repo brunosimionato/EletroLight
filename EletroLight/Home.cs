@@ -17,65 +17,75 @@ namespace EletroLight
             InitializeComponent();
         }
 
+        private Form Form = null;
 
-        private Form formularioAberto = null;
-
+        // ABRE FORM CLIENTE
         private void clienteMenuItem_Click(object sender, EventArgs e)
         {
             AbrirForm(new Cliente());
         }
 
+        // ABRE FORM FORNECEDOR
         private void fornecedorMenuItem_Click(object sender, EventArgs e)
         {
             AbrirForm(new Fornecedor());
         }
 
+        // ABRE FORM PRODUTO
         private void produtoMenuItem_Click(object sender, EventArgs e)
         {
             AbrirForm(new Produto());
         }
 
+        // ABRE FORM PEDIDO
         private void pedidoMenuItem_Click_1(object sender, EventArgs e)
         {
             AbrirForm(new Pedido());
         }
 
+        // ABRE FORM USUÁRIOS
         private void usuáriosMenuItem_Click_1(object sender, EventArgs e)
         {
             AbrirForm(new Usuarios());
         }
 
+        // ABRE FORM CATEGORIAS
         private void CategoriasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AbrirForm(new Categoria());
         }
 
+        // ABRE FORM DE PEDIDOS EXCLUÍDOS 
         private void pedidosExcluidoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AbrirForm(new PedidoExcluido());
         }
 
-
-        private void AbrirForm(Form novoFormulario)
-        {
-            if (formularioAberto != null && !formularioAberto.IsDisposed)
-            {
-                formularioAberto.Close();
-            }
-
-            novoFormulario.Owner = this;
-            novoFormulario.Show();
-            formularioAberto = novoFormulario;
-        }
-
+        // BOTÃO DE SAIR
         private void sairMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        // FECHA A APLICAÇÃO AO CLICAR NO BOTÃO SAIR SE UM FORM ESTIVER SOBREPOSTO A HOME
         private void Home_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
+
+
+        // FUNÇÃO QUE SUBSTITUI O FORM ABERTO POR OUTRO 
+        private void AbrirForm(Form novoForm)
+        {
+            if (Form != null && !Form.IsDisposed)
+            {
+                Form.Close();
+            }
+
+            novoForm.Owner = this;
+            novoForm.Show();
+            Form = novoForm;
+        }
+
     }
 }

@@ -23,7 +23,37 @@ namespace EletroLight
         }
 
 
-        // BOTÃO INCLUIR //
+        // PERMITE APENAS NÚMEROS NA TEXTBOX RG
+        private void rgTB_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+
+        // ALTERA AS LETRAS MINUSCÚLAS PARA MAIÚSCULAS NA TEXTBOX UF 
+        private void ufTB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLower(e.KeyChar))
+            {
+                e.KeyChar = char.ToUpper(e.KeyChar);
+            }
+        }
+
+
+        // FECHA O FORMULÁRIO COM ESC
+        private void Cliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+
+        // BOTÃO INCLUIR
         private void incluirBT_Click(object sender, EventArgs e)
         {
             try
@@ -95,7 +125,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO CONSULTAR //
+        // BOTÃO CONSULTAR
         private void consultarBT_Click(object sender, EventArgs e)
         {
             try
@@ -146,7 +176,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO LIMPAR //
+        // BOTÃO LIMPAR
         private void limparBT_Click(object sender, EventArgs e)
         {
             idTB.Text = string.Empty;
@@ -162,7 +192,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO EXCLUIR //
+        // BOTÃO EXCLUIR
         private void excluirBT_Click(object sender, EventArgs e)
         {
             try
@@ -200,7 +230,6 @@ namespace EletroLight
                                 return;
                             }
                         }
-
                         using (SqlCommand cmd = new SqlCommand("ExcluirCliente", connection))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
@@ -220,6 +249,7 @@ namespace EletroLight
                             ufTB.Text = "";
                             telefoneMTB.Text = "";
                             emailTB.Text = "";
+
                         }
                     }
                 }
@@ -231,7 +261,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO ATUALIZAR //
+        // BOTÃO ATUALIZAR
         private void atualizarBT_Click(object sender, EventArgs e)
         {
             try
@@ -285,36 +315,6 @@ namespace EletroLight
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao atualizar Cliente: " + ex.Message);
-            }
-        }
-
-
-        // Permite apenas números na rgTB //
-        private void rgTB_KeyPress_1(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-
-        // Altera as letras minúsculas em maiúsculas na uftb //
-        private void ufTB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsLower(e.KeyChar))
-            {
-                e.KeyChar = char.ToUpper(e.KeyChar);
-            }
-        }
-
-
-        // Fecha o Formulário com ESC //
-        private void Cliente_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
             }
         }
     }
