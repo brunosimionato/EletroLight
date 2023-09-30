@@ -20,7 +20,7 @@ namespace EletroLight
         }
 
 
-        // Fecha o Formulário com ESC //
+        // FECHA O FORMULÁRIO COM ESC
         private void Categoria_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -32,7 +32,7 @@ namespace EletroLight
 
         private void Categoria_Load(object sender, EventArgs e)
         {
-            // CONFIGURAÇÃO DA DATA GRID VIEW //
+            // CONFIGURAÇÃO DA DATAGRIDVIEW //
             {
                 SqlConnection conexao = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True");
                 conexao.Open();
@@ -74,7 +74,7 @@ namespace EletroLight
         }
 
 
-        // FUNÇÃO PARA ATUALIZAR A DATA GRID VIEW APÓS INSERIR UM CLIENTE NOVO //
+        // FUNÇÃO PARA ATUALIZAR A DATAGRIDVIEW APÓS INSERIR, EXCLUIR OU ALTERAR UMA CATEGORIA NOVA
         private void AtualizarDataGridView()
         {
             using (SqlConnection conexao = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True"))
@@ -92,7 +92,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO INCLUIR // 
+        // BOTÃO INCLUIR
         private void incluirBT_Click(object sender, EventArgs e)
         {
             try
@@ -148,7 +148,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO CONSULTAR //
+        // BOTÃO CONSULTAR
         private void consultarBT_Click(object sender, EventArgs e)
         {
             try
@@ -197,7 +197,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO EXCLUIR //
+        // BOTÃO EXCLUIR
         private void excluirBT_Click(object sender, EventArgs e)
         {
             try
@@ -253,7 +253,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO LIMPAR //
+        // BOTÃO LIMPAR
         private void limparBT_Click(object sender, EventArgs e)
         {
             idTB.Text = string.Empty;
@@ -261,7 +261,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO ATUALIZAR //
+        // BOTÃO ATUALIZAR
         private void atualizarBT_Click(object sender, EventArgs e)
         {
             try
@@ -305,8 +305,6 @@ namespace EletroLight
                 MessageBox.Show("Erro ao atualizar Categoria: " + ex.Message);
             }
         }
-
-        
     }
     
 }

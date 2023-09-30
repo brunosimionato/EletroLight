@@ -21,7 +21,7 @@ namespace EletroLight
         }
 
 
-        // Fecha o Formulário com ESC //
+        // FECHA O FORMULÁRIO COM ESC
         private void RelatorioPedido_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -31,15 +31,12 @@ namespace EletroLight
         }
 
 
+        // CARREGA O REPORTVIEW NO LAYOUT DE IMPRESSÃO
         private void RelatorioPedido_Load(object sender, EventArgs e)
         {
             this.view_PedidoTableAdapter.Fill(this.eLETROLIGHTDataSet.view_Pedido);
             this.reportViewer1.RefreshReport();
             reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
         }
-
-
-
-
     }
 }

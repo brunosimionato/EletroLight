@@ -24,7 +24,7 @@ namespace EletroLight
         }
 
 
-        // Fecha o Formulário com ESC //
+        // FECHA O FORMÚLARIO COM A TECLA ESC
         private void Produto_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -34,7 +34,7 @@ namespace EletroLight
         }
 
 
-        // CONFIGURAÇÃO DAS COMBOBOX //
+        // CONFIGURAÇÃO DAS COMBOBOX
         private void Produto_Load_1(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True");
@@ -60,7 +60,42 @@ namespace EletroLight
         }        
 
 
-        // BOTÃO INCLUIR //
+        // FORMATA O VALOR MONETÁRIO DA TEXT BOX VALOR
+        private void valorTB_TextChanged_1(object sender, EventArgs e)
+        {
+            string textoSemFormatacao = valorTB.Text.Replace(",", "").Replace(".", "");
+
+            if (decimal.TryParse(textoSemFormatacao, out decimal valor))
+            {
+                string valorFormatado = (valor / 100).ToString("N2");
+
+                valorTB.Text = valorFormatado;
+                valorTB.SelectionStart = valorTB.Text.Length;
+            }
+        }
+
+
+        //ACEITA APENAS NÚMEROS TEXTBOX VALOR
+        private void valorTB_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+
+        // PERMITE APENAS NÚMEROS NA TEXTBOX QUANTIDADE
+        private void quantidadeTB_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+
+        // BOTÃO INCLUIR
         private void incluirBT_Click_1(object sender, EventArgs e)
         {
             try
@@ -90,14 +125,12 @@ namespace EletroLight
                 {
                     connection.Open();
 
-                    // Verifica se a restrição 'UQ_produto' já existe
                     bool uqProdutoExists;
                     using (SqlCommand cmdCheckUQ = new SqlCommand("SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_NAME = 'UQ_produto'", connection))
                     {
                         uqProdutoExists = (int)cmdCheckUQ.ExecuteScalar() > 0;
                     }
 
-                    // Cria a restrição 'UQ_produto' se não existir
                     if (!uqProdutoExists)
                     {
                         using (SqlCommand cmdCreateUQ = new SqlCommand("ALTER TABLE Produto ADD CONSTRAINT UQ_produto UNIQUE (produto)", connection))
@@ -143,7 +176,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO CONSULTAR //
+        // BOTÃO CONSULTAR
          private void consultarBT_Click_1(object sender, EventArgs e)
         {
             try
@@ -171,7 +204,6 @@ namespace EletroLight
                                 idTB.Text = reader["id_produto"].ToString();
                                 produtoTB.Text = reader["produto"].ToString();
 
-                                // Valor é exibido corretamente
                                 valorTB.Text = reader["valor"].ToString();
 
                                 quantidadeTB.Text = reader["quantidade"].ToString();
@@ -193,7 +225,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO LIMPAR //
+        // BOTÃO LIMPAR
         private void limparBT_Click_1(object sender, EventArgs e)
         {
             idTB.Text = string.Empty;
@@ -207,7 +239,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO EXCLUIR //
+        // BOTÃO EXCLUIR
          private void excluirBT_Click_1(object sender, EventArgs e)
         {
             try
@@ -221,7 +253,6 @@ namespace EletroLight
                     MessageBox.Show("Por favor, preencha todos os campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
 
                 DialogResult resultado = MessageBox.Show("Tem certeza que deseja excluir o Produto?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -267,10 +298,10 @@ namespace EletroLight
             {
                 MessageBox.Show("Erro ao excluir produto: " + ex.Message);
             }
-        }
+         }
 
 
-        // BOTÃO ATUALIZAR //
+        // BOTÃO ATUALIZAR
         private void atualizarBT_Click_1(object sender, EventArgs e)
         {
             try
@@ -337,7 +368,6 @@ namespace EletroLight
 
                                     MessageBox.Show("Produto atualizado com sucesso!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                    // Atualiza a TextBox com o valor formatado
                                     string valorFormatado = (valorDecimal).ToString("N2");
                                     valorTB.Text = valorFormatado;
                                 }
@@ -355,41 +385,5 @@ namespace EletroLight
                 MessageBox.Show("Erro ao atualizar Produto: " + ex.Message);
             }
         }
-
-
-        // Formata automaticamente o valor monetário da valorTB //
-        private void valorTB_TextChanged_1(object sender, EventArgs e)
-        {
-            string textoSemFormatacao = valorTB.Text.Replace(",", "").Replace(".", "");
-
-            if (decimal.TryParse(textoSemFormatacao, out decimal valor))
-            {
-                string valorFormatado = (valor / 100).ToString("N2");
-
-                valorTB.Text = valorFormatado;
-                valorTB.SelectionStart = valorTB.Text.Length;
-            }
-        }
-
-        // Permite apenas números na quantidadeTB //
-        private void quantidadeTB_KeyPress_1(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        // Aceita apenas números na valorTB //
-        private void valorTB_KeyPress_1(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-
-
     }
 }

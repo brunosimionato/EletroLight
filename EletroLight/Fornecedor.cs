@@ -20,12 +20,22 @@ namespace EletroLight
         }
 
 
-        // Fecha o Formulário com ESC //
+        // FECHA O FORMULÁRIO COM ESC
         private void Fornecedor_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+        }
+
+
+        // ALTERA AS LETRAS MINUSCÚLAS PARA MAIÚSCULAS NA TEXTBOX UF 
+        private void ufTB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLower(e.KeyChar))
+            {
+                e.KeyChar = char.ToUpper(e.KeyChar);
             }
         }
 
@@ -99,7 +109,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO CONSULTAR //
+        // BOTÃO CONSULTAR
         private void consultarBT_Click(object sender, EventArgs e)
         {
             try
@@ -148,7 +158,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO LIMPAR //
+        // BOTÃO LIMPAR
         private void limparBT_Click(object sender, EventArgs e)
         {
             idTB.Text = string.Empty;
@@ -163,7 +173,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO EXCLUIR //
+        // BOTÃO EXCLUIR
         private void excluirBT_Click(object sender, EventArgs e)
         {
             try
@@ -230,7 +240,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO ATUALIZAR //
+        // BOTÃO ATUALIZAR
         private void atualizarBT_Click(object sender, EventArgs e)
         {
             try
@@ -266,17 +276,5 @@ namespace EletroLight
                 MessageBox.Show("Erro ao atualizar Fornecedor: " + ex.Message);
             }
         }
-
-
-        // Altera as letras minúsculas em maiúsculas na ufTB //
-        private void ufTB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsLower(e.KeyChar))
-            {
-                e.KeyChar = char.ToUpper(e.KeyChar);
-            }
-        }
-
-
     }
 }

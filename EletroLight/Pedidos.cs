@@ -16,7 +16,7 @@ namespace EletroLight
         }
 
 
-        // Fecha o Formulário com ESC //
+        // FECHA O FORMÁRIO COM ESC
         private void Pedido_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -26,12 +26,13 @@ namespace EletroLight
         }
 
 
-        // CONFIGURAÇÃO DAS COMBOBOX //
+        // CONFIGURAÇÃO DAS COMBOBOX
         private void Pedido_Load(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True");
 
-            // Configuração da ComboBox de Cliente
+
+            // CONFIGURAÇÃO DA COMBOBOX CLIENTE
             SqlCommand cmdCliente = new SqlCommand("SELECT nome FROM Cliente", conn);
             SqlDataAdapter daCliente = new SqlDataAdapter();
             daCliente.SelectCommand = cmdCliente;
@@ -43,7 +44,7 @@ namespace EletroLight
             clienteCB.SelectedIndex = -1;
             clienteCB.SelectedIndexChanged += clienteCB_SelectedIndexChanged;
 
-            // Configuração da ComboBox de Produto
+            // CONFIGURAÇÃO DA COMBO BOX PRODUTO
             SqlCommand cmdProduto = new SqlCommand("SELECT produto FROM Produto", conn);
             SqlDataAdapter daProduto = new SqlDataAdapter();
             daProduto.SelectCommand = cmdProduto;
@@ -55,7 +56,7 @@ namespace EletroLight
             produtoCB.SelectedIndex = -1;
 
 
-            // CONFIGURAÇÃO DA DATA GRID //
+            // CONFIGURAÇÃO DO DATAGRIDVIEW
             {
                 SqlConnection conexao = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True");
                 conexao.Open();
@@ -77,7 +78,6 @@ namespace EletroLight
                 dataGV.Columns[5].HeaderText = "Data";
                 dataGV.Columns[6].HeaderText = "Valor Unitário";
                 dataGV.Columns[7].HeaderText = "Valor Total";
-
 
                 foreach (DataGridViewColumn coluna in dataGV.Columns)
                 {
@@ -101,7 +101,7 @@ namespace EletroLight
                     coluna.HeaderCell.Style.Padding = new Padding(3, 3, 3, 3);
                 }
 
-                // Adicionando a formatação para valores
+                // ADICIONA A FORMATAÇÃO DE VALORES NA DATAGRIDVIEW
                 dataGV.CellFormatting += (senderGrid, eventArgs) =>
                 {
                     int valorColumnIndex = 6;
@@ -120,7 +120,7 @@ namespace EletroLight
         }
 
 
-        // FUNÇÃO PARA ATUALIZAR A DATA GRID VIEW APÓS INSERIR UM CLIENTE NOVO //
+        // FUNÇÃO PARA ATUALIZAR A DATAGRIDVIEW APÓS INSERIR, EXCLUIR OU ALTERAR UM CLIENTE NOVO
         private void AtualizarDataGridView()
         {
             using (SqlConnection conexao = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True"))
@@ -138,7 +138,7 @@ namespace EletroLight
         }
 
 
-        // ACEITA APENAS NÚMEROS NA QUANTIDADETB //
+        // ACEITA APENAS NÚMEROS NA TEXTBOX QUANTIDADE
         private void quantidadeTB_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -149,7 +149,7 @@ namespace EletroLight
         }        
 
 
-        // ATUALIZA A TEXTBOX DO CPF COM BASE NO CLIENTE SELECIONADO //
+        // ATUALIZA A TEXTBOX CPF COM BASE NO CLIENTE SELECIONADO
         private void clienteCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (clienteCB.SelectedIndex != -1)
@@ -166,12 +166,11 @@ namespace EletroLight
                     string cpf = (string)cmd.ExecuteScalar();
                     cpfMTB.Text = cpf;
                 }
-
             }
         }
 
 
-        // ATUALIZA A TEXBOX VALOR UNITÁRIO COM BASE NO PRODUTO SELECIONADO //
+        // ATUALIZA A TEXBOX VALOR UNITÁRIO COM BASE NO PRODUTO SELECIONADO
         private void produtoCB_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (produtoCB.SelectedItem != null)
@@ -191,7 +190,7 @@ namespace EletroLight
                     if (result != DBNull.Value)
                     {
                         decimal valorUnitario = (decimal)result;
-                        valor_unitarioTB.Text = valorUnitario.ToString("0.00"); // Exibe o valor com duas casas decimais
+                        valor_unitarioTB.Text = valorUnitario.ToString("0.00");
                     }
                     else
                     {
@@ -199,7 +198,7 @@ namespace EletroLight
                     }
                 }
 
-                CalcularEAtualizarValorTotal();
+                CalcularValorTotal();
             }
             else
             {
@@ -209,16 +208,27 @@ namespace EletroLight
         }
 
 
-        // CALULA O VALOR TOTAL COM BASE NA QUANTIDADE E VALOR UNITÁRIO //
-        private void CalcularEAtualizarValorTotal()
+        // CALULA O VALOR TOTAL COM BASE NA QUANTIDADE E VALOR UNITÁRIO USANDO A FUNCTION "CalcularValorTotal"
+        private void CalcularValorTotal()
         {
             if (!string.IsNullOrEmpty(valor_unitarioTB.Text) && int.TryParse(quantidadeTB.Text, out int quantidade))
             {
                 decimal valorUnitario = decimal.Parse(valor_unitarioTB.Text, new CultureInfo("pt-BR"));
 
-                decimal valorTotal = quantidade * valorUnitario;
+                using (SqlConnection connection = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True"))
+                {
+                    connection.Open();
 
-                valor_totalTB.Text = valorTotal.ToString("#,##0.00"); // Exibe o valor total com duas casas decimais
+                    using (SqlCommand cmd = new SqlCommand("SELECT dbo.CalcularValorTotal(@quantidade, @valor_unitario)", connection))
+                    {
+                        cmd.Parameters.AddWithValue("@quantidade", quantidade);
+                        cmd.Parameters.AddWithValue("@valor_unitario", valorUnitario);
+
+                        decimal valorTotal = (decimal)cmd.ExecuteScalar();
+
+                        valor_totalTB.Text = valorTotal.ToString("#,##0.00");
+                    }
+                }
             }
             else
             {
@@ -227,14 +237,46 @@ namespace EletroLight
         }
 
 
-        // Toda a vez que um número é inserido dentro da quantidadeTB o calculo de multiplicação é feito //
+        // EXECUTA A FUNÇÃO "CalcularValorTotal" TODA A VEZ QUE UM NÉMERO É INSERIDO NA TEXTBOX QUANTIDADE
         private void quantidadeTB_KeyUp(object sender, KeyEventArgs e)
         {
-            CalcularEAtualizarValorTotal();
+            CalcularValorTotal();
         }
 
 
-        // BOTÃO INCLUIR //
+        // OBTÉM O NOME DO CLIENTE ATRAVÉS DO ID DO CLIENTE
+        private string ObterNomeCliente(int idCliente)
+        {
+            using (SqlConnection conn = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True"))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT nome FROM Cliente WHERE id_cliente = @id_cliente", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id_cliente", idCliente);
+                    return (string)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+
+        // OBTÉM O NOME DO PRODUTO ATRAVÉS DO ID DO PRODUTO
+        private string ObterNomeProduto(int idProduto)
+        {
+            using (SqlConnection conn = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True"))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT produto FROM Produto WHERE id_produto = @id_produto", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id_produto", idProduto);
+                    return (string)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+
+        // BOTÃO INCLUIR
         private void incluirBT_Click(object sender, EventArgs e)
         {
             try
@@ -257,11 +299,18 @@ namespace EletroLight
                     return;
                 }
 
-                // Verificar se a data é válida antes de tentar a conversão
                 DateTime data;
                 if (!DateTime.TryParseExact(dataMTB.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out data))
                 {
-                    MessageBox.Show("Por favor, preencha todos os campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Data Inválida.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dataMTB.Text = string.Empty;
+                    return;
+                }
+
+                if (data < DateTime.Today)
+                {
+                    MessageBox.Show("Esta data já passou.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dataMTB.Text = string.Empty;
                     return;
                 }
 
@@ -300,7 +349,6 @@ namespace EletroLight
                 valor_unitarioTB.Text = "";
                 valor_totalTB.Text = "";
 
-                // Atualizar a DataGridView após a inserção //
                 AtualizarDataGridView();
             }
             catch (SqlException ex)
@@ -310,7 +358,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO CONSULTAR //
+        // BOTÃO CONSULTAR
         private void consultarBT_Click(object sender, EventArgs e)
         {
             try
@@ -368,36 +416,8 @@ namespace EletroLight
             }
         }
 
-        private string ObterNomeCliente(int idCliente)
-        {
-            using (SqlConnection conn = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True"))
-            {
-                conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT nome FROM Cliente WHERE id_cliente = @id_cliente", conn))
-                {
-                    cmd.Parameters.AddWithValue("@id_cliente", idCliente);
-                    return (string)cmd.ExecuteScalar();
-                }
-            }
-        }
-
-        private string ObterNomeProduto(int idProduto)
-        {
-            using (SqlConnection conn = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True"))
-            {
-                conn.Open();
-
-                using (SqlCommand cmd = new SqlCommand("SELECT produto FROM Produto WHERE id_produto = @id_produto", conn))
-                {
-                    cmd.Parameters.AddWithValue("@id_produto", idProduto);
-                    return (string)cmd.ExecuteScalar();
-                }
-            }
-        }
-
-
-        // BOTÃO LIMPAR //
+        // BOTÃO LIMPAR
         private void limparBT_Click(object sender, EventArgs e)
         {
             clienteCB.SelectedIndex = -1;
@@ -411,7 +431,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO EXCLUIR // 
+        // BOTÃO EXCLUIR
         private void excluirBT_Click(object sender, EventArgs e)
         {
             try
@@ -453,7 +473,6 @@ namespace EletroLight
                             valor_unitarioTB.Text = string.Empty;
                             valor_totalTB.Text = string.Empty;
 
-                            // Atualizar a DataGridView após a inserção //
                             AtualizarDataGridView();
                         }
                     }
@@ -466,7 +485,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO ATUALIZAR //
+        // BOTÃO ATUALIZAR
         private void atualizarBT_Click(object sender, EventArgs e)
         {
             try
@@ -543,7 +562,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO RELATÓRIO //
+        // BOTÃO RELATÓRIO
         private void relatorioBT_Click(object sender, EventArgs e)
         {
             RelatorioPedido frm = new RelatorioPedido();

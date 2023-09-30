@@ -20,7 +20,7 @@ namespace EletroLight
         }
 
 
-        // Fecha o Formulário com ESC //
+        // FECHA O FORMULÁRIO COM ESC
         private void PedidoExcluido_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -33,7 +33,7 @@ namespace EletroLight
 
         private void PedidoExcluido_Load(object sender, EventArgs e)
         {
-            // CONFIGURAÇÃO DA DATA GRID //
+            // CONFIGURAÇÃO DA DATAGRIDVIEW
             {
                 SqlConnection conexao = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True");
                 conexao.Open();
@@ -87,7 +87,7 @@ namespace EletroLight
                 }
 
 
-                // Adicionando a formatação para valores
+                // ADICIONA A FORMATAÇÃO DE VALORES NA DATAGRIDVIEW
                 PedidoExluidoDGV.CellFormatting += (senderGrid, eventArgs) =>
                 {
                     int valorColumnIndex = 7;

@@ -21,7 +21,7 @@ namespace EletroLight
         }
 
 
-        // Fecha o formulário com o ESC //
+        // FECHA O FORMULÁRIO COM ESC
         private void Usuarios_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -33,7 +33,7 @@ namespace EletroLight
 
         private void Usuarios_Load(object sender, EventArgs e)
         {
-            // CONFIGURAÇÃO DA DATA GRID //
+            // CONFIGURAÇÃO DA DATAGRIDVIEW
             {
                 SqlConnection conexao = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True");
                 conexao.Open();
@@ -76,7 +76,7 @@ namespace EletroLight
         }
 
 
-        // FUNÇÃO PARA ATUALIZAR A DATA GRID VIEW APÓS INSERIR UM CLIENTE NOVO //
+        // FUNÇÃO PARA ATUALIZAR A DATAGRIDVIEW APÓS INSERIR, EXCLUIR OU ALTERAR UM USUÁRIO NOVO
         private void AtualizarDataGridView()
         {
             using (SqlConnection conexao = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True"))
@@ -94,7 +94,7 @@ namespace EletroLight
         }
 
 
-        // Aceita apenas números no idTB //
+        // ACEITA APENAS NÚMEROS NA TEXTBOX ID
         private void idTB_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -104,7 +104,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO INCLUIR //
+        // BOTÃO INCLUIR
         private void incluirBT_Click(object sender, EventArgs e)
         {
             try
@@ -158,8 +158,7 @@ namespace EletroLight
         }
 
 
-
-        // BOTÃO CONSULTAR //
+        // BOTÃO CONSULTAR
         private void consultarBT_Click(object sender, EventArgs e)
         {
             try
@@ -179,14 +178,13 @@ namespace EletroLight
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        // Se você deseja consultar apenas por ID, utilize o campo "idTB"
                         cmd.Parameters.AddWithValue("@id_usuario", string.IsNullOrEmpty(idTB.Text) ? (object)DBNull.Value : Convert.ToInt32(idTB.Text));
 
                         SqlDataReader reader = cmd.ExecuteReader();
 
                         if (reader.HasRows)
                         {
-                            reader.Read(); // Lê a primeira linha
+                            reader.Read();
 
                             idTB.Text = reader["id_usuario"].ToString();
                             usuarioTB.Text = reader["usuario"].ToString();
@@ -208,7 +206,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO LIMPAR //
+        // BOTÃO LIMPAR 
         private void limparBT_Click(object sender, EventArgs e)
         {
             idTB.Text = string.Empty;
@@ -217,7 +215,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO EXCLUIR //
+        // BOTÃO EXCLUIR
         private void excluirBT_Click(object sender, EventArgs e)
         {
             try
@@ -271,7 +269,7 @@ namespace EletroLight
         }
 
 
-        // BOTÃO ATUALIZAR //
+        // BOTÃO ATUALIZAR
         private void atualizarBT_Click(object sender, EventArgs e)
         {
             try
@@ -301,7 +299,6 @@ namespace EletroLight
                             cmd.Parameters.AddWithValue("@id_usuario", usuarioID); 
                             cmd.Parameters.AddWithValue("@usuario", usuarioTB.Text);
                             cmd.Parameters.AddWithValue("@senha", senhaTB.Text);
-
 
                             cmd.ExecuteNonQuery();
 
