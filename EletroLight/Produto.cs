@@ -43,21 +43,30 @@ namespace EletroLight
             da.SelectCommand = cmd;
             DataTable table1 = new DataTable();
             da.Fill(table1);
+
+            table1.DefaultView.Sort = "descricao ASC";
+            table1 = table1.DefaultView.ToTable();
+
             categoriaCB.DataSource = table1;
-            categoriaCB.DisplayMember = "Categoria";
+            categoriaCB.DisplayMember = "descricao";
             categoriaCB.ValueMember = "descricao";
             categoriaCB.SelectedIndex = -1;
+
 
             SqlCommand cmdFornecedor = new SqlCommand("SELECT nome FROM Fornecedor", conn);
             SqlDataAdapter daFornecedor = new SqlDataAdapter();
             daFornecedor.SelectCommand = cmdFornecedor;
             DataTable tableFornecedor = new DataTable();
             daFornecedor.Fill(tableFornecedor);
+
+            tableFornecedor.DefaultView.Sort = "nome ASC";
+            tableFornecedor = tableFornecedor.DefaultView.ToTable();
+
             fornecedorCB.DataSource = tableFornecedor;
-            fornecedorCB.DisplayMember = "Fornecedor";
+            fornecedorCB.DisplayMember = "nome";
             fornecedorCB.ValueMember = "nome";
             fornecedorCB.SelectedIndex = -1;
-        }        
+        }
 
 
         // FORMATA O VALOR MONETÁRIO DA TEXT BOX VALOR

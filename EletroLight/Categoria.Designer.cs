@@ -160,14 +160,15 @@ namespace EletroLight
             this.categoriaDGV.AllowUserToResizeColumns = false;
             this.categoriaDGV.AllowUserToResizeRows = false;
             this.categoriaDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.categoriaDGV.Location = new System.Drawing.Point(35, 132);
+            this.categoriaDGV.Location = new System.Drawing.Point(35, 135);
             this.categoriaDGV.MultiSelect = false;
             this.categoriaDGV.Name = "categoriaDGV";
             this.categoriaDGV.ReadOnly = true;
             this.categoriaDGV.RowHeadersVisible = false;
+            this.categoriaDGV.RowTemplate.Height = 25;
             this.categoriaDGV.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.categoriaDGV.Size = new System.Drawing.Size(409, 141);
-            this.categoriaDGV.TabIndex = 68;
+            this.categoriaDGV.TabIndex = 82;
             // 
             // Categoria
             // 
