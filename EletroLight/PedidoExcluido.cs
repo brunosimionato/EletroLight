@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EletroLight
 {
@@ -104,6 +105,31 @@ namespace EletroLight
                 };
             }
         }
+
+
+        // FILTRO POR NOME
+        private void nomeTB_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = nomeTB.Text;
+
+            using (SqlConnection connection = new SqlConnection("Data Source=LAPTOP-BRUNO\\SQLEXPRESS;Initial Catalog=ELETROLIGHT;Integrated Security=True"))
+            {
+                connection.Open();
+                string sql = "SELECT * FROM PedidoExcluido WHERE cliente LIKE @filtro";
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        PedidoExluidoDGV.DataSource = dataTable;
+                    }
+                }
+            }
+        }
+
+
     }
 }
 

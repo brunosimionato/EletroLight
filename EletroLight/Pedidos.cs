@@ -38,11 +38,18 @@ namespace EletroLight
             daCliente.SelectCommand = cmdCliente;
             DataTable tableCliente = new DataTable();
             daCliente.Fill(tableCliente);
+
+            tableCliente.DefaultView.Sort = "nome ASC";
+            tableCliente = tableCliente.DefaultView.ToTable();
+
             clienteCB.DataSource = tableCliente;
             clienteCB.DisplayMember = "nome";
             clienteCB.ValueMember = "nome";
+            clienteCB.DropDownHeight = clienteCB.ItemHeight * 6;
             clienteCB.SelectedIndex = -1;
             clienteCB.SelectedIndexChanged += clienteCB_SelectedIndexChanged;
+
+
 
             // CONFIGURAÇÃO DA COMBO BOX PRODUTO
             SqlCommand cmdProduto = new SqlCommand("SELECT produto FROM Produto", conn);
@@ -50,10 +57,17 @@ namespace EletroLight
             daProduto.SelectCommand = cmdProduto;
             DataTable tableProduto = new DataTable();
             daProduto.Fill(tableProduto);
+
+            tableProduto.DefaultView.Sort = "produto ASC";
+            tableProduto = tableProduto.DefaultView.ToTable();
+
             produtoCB.DataSource = tableProduto;
             produtoCB.DisplayMember = "produto";
             produtoCB.ValueMember = "produto";
+            produtoCB.DropDownHeight = produtoCB.ItemHeight * 6;
             produtoCB.SelectedIndex = -1;
+            produtoCB.SelectedIndexChanged += clienteCB_SelectedIndexChanged;
+
 
 
             // CONFIGURAÇÃO DO DATAGRIDVIEW
