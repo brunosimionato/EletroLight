@@ -45,14 +45,16 @@
             this.PedidoExluidoDGV.AllowUserToDeleteRows = false;
             this.PedidoExluidoDGV.AllowUserToResizeColumns = false;
             this.PedidoExluidoDGV.AllowUserToResizeRows = false;
+            this.PedidoExluidoDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.PedidoExluidoDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.PedidoExluidoDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PedidoExluidoDGV.Location = new System.Drawing.Point(24, 123);
+            this.PedidoExluidoDGV.Location = new System.Drawing.Point(24, 139);
             this.PedidoExluidoDGV.MultiSelect = false;
             this.PedidoExluidoDGV.Name = "PedidoExluidoDGV";
             this.PedidoExluidoDGV.ReadOnly = true;
             this.PedidoExluidoDGV.RowHeadersVisible = false;
             this.PedidoExluidoDGV.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.PedidoExluidoDGV.Size = new System.Drawing.Size(840, 300);
+            this.PedidoExluidoDGV.Size = new System.Drawing.Size(840, 302);
             this.PedidoExluidoDGV.TabIndex = 0;
             // 
             // nomeLabel
@@ -90,7 +92,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(882, 445);
+            this.ClientSize = new System.Drawing.Size(882, 505);
             this.Controls.Add(this.nomeTB);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nomeLabel);
