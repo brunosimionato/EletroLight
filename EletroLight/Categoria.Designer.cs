@@ -167,7 +167,7 @@ namespace EletroLight
             this.categoriaDGV.RowHeadersVisible = false;
             this.categoriaDGV.RowTemplate.Height = 25;
             this.categoriaDGV.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.categoriaDGV.Size = new System.Drawing.Size(409, 141);
+            this.categoriaDGV.Size = new System.Drawing.Size(409, 129);
             this.categoriaDGV.TabIndex = 82;
             // 
             // Categoria

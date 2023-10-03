@@ -104,6 +104,11 @@ namespace EletroLight
                     }
                 };
             }
+
+            // Substitua o 'PedidoExluidoDGV' pelo nome do seu DataGridView
+            int lastIndex = PedidoExluidoDGV.Rows.Count - 1;
+            PedidoExluidoDGV.Rows[lastIndex].Height = 1; // Defina a altura mínima desejada
+
         }
 
 
